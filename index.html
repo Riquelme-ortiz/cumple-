@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feliz cumpleaños, Liz</title>
+<style>
+
+:root {
+    /* Colores principales */
+    --g: #8B687D;
+    --g2: #49363C;
+
+    /* Colores de acento */
+    --gold: #E8D8B8;
+    --rose: #C995A5;
+    --rose-light: #E8C8CF;
+
+    /* Fondos */
+    --cream: #F9EEF0;
+    --background: #F7F0F1;
+    --card-bg: #FFFAFA;
+
+    /* Textos y bordes */
+    --ink: #49363C;
+    --muted: #927D86;
+    --line: #E8C8CF;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: Arial, sans-serif;
+    letter-spacing: .1px;
+}
+
+h1, h2, h3, .brand,
+#messages .person span {
+    font-family: Georgia, serif;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ===== NAVEGACIÓN ===== */
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 6%;
+    background: rgba(250,248,241,.96);
+    border-bottom: 1px solid rgba(214,184,117,.3);
+    backdrop-filter: blur(10px);
+}
+
+.brand {
+    color: var(--g);
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.brand span {
+    color: var(--gold);
+    margin-left: 4px;
+}
+
+.topbar-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.topbar-links a {
+    color: var(--g);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .25s;
+}
+
+.topbar-links a:hover {
+    color: #b39759;
+}
+
+/* ===== PORTADA ===== */
+
+.hero {
+    min-height: 85vh;
+    display: grid;
+    place-items: center;
+    padding: 65px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(214,184,117,.16), transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(169,187,165,.28), transparent 40%),
+        linear-gradient(135deg, #fffefa, #f7f6ef 50%, #edf1e9);
+}
+
+.hero-inner {
+    width: 100%;
+    max-width: 760px;
+    position: relative;
+    z-index: 1;
+    animation: appear 1s ease both;
+}
+
+.eyebrow {
+    color: #a88a4c;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    color: var(--g);
+    font-size: clamp(58px, 11vw, 108px);
+    font-weight: 400;
+    line-height: .98;
+    letter-spacing: -3px;
+    margin: 22px 0 15px;
+}
+
+.hero h1 span {
+    color: var(--gold);
+    font-style: italic;
+}
+
+.hero p {
+    max-width: 580px;
+    margin: 20px auto;
+    color: #65746a;
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+/* Fotografía principal de Liz */
+
+.portrait {
+    display: block;
+    width: 175px;
+    height: 175px;
+    max-width: 100%;
+    margin: 10px auto;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+    outline: 2px solid var(--gold);
+    outline-offset: 5px;
+    box-shadow: 0 12px 35px rgba(35,75,59,.16);
+    background: #e9eadf;
+    transition: transform .3s;
+}
+
+.portrait:hover {
+    transform: scale(1.04);
+}
+
+/* Botones */
+
+.btn, .play {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    padding: 13px 22px;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    background: var(--g);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background .25s, transform .25s, box-shadow .25s;
+    box-shadow: 0 5px 15px rgba(35,75,59,.14);
+}
+
+.btn:hover, .play:hover {
+    background: var(--g2);
+    transform: translateY(-2px);
+    box-shadow: 0 9px 22px rgba(35,75,59,.2);
+}
+
+.btn.light {
+    background: white;
+    color: var(--g);
+    border-color: var(--line);
+    box-shadow: none;
+}
+
+.btn.light:hover {
+    background: var(--gold);
+    color: white;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+    padding: 14px 25px;
+    background: var(--g);
+    color: white;
+    border: 1px solid var(--gold);
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.hero-cta:hover {
+    background: var(--g2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(35,75,59,.18);
+}
+
+.hero-cta span {
+    color: var(--gold);
+    font-size: 18px;
+}
+
+/* ===== FRANJA MUSICAL ===== */
+
+.musicline {
+    padding: 23px 20px;
+    text-align: center;
+    color: var(--muted);
+    background: linear-gradient(90deg, #edf1e9, #f8f5eb, #edf1e9);
+    border-block: 1px solid rgba(214,184,117,.25);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* ===== CONTENIDO ===== */
+
+main {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 75px 22px;
+}
+
+.head {
+    margin-bottom: 45px;
+    text-align: center;
+}
+
+.head h2 {
+    margin: 10px 0;
+    color: var(--g);
+    font-size: clamp(32px, 5vw, 46px);
+    font-weight: 400;
+}
+
+.head p, .muted {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Separador decorativo */
+
+.section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 300px;
+    margin: 25px auto;
+}
+
+.section-divider::before,
+.section-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+}
+
+.section-divider span {
+    color: var(--gold);
+    font-size: 19px;
+}
+
+/* Contador */
+
+.message-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin: 12px 0 25px;
+    padding: 9px 18px;
+    background: rgba(214,184,117,.13);
+    border: 1px solid rgba(214,184,117,.35);
+    border-radius: 25px;
+    color: var(--g);
+    font-size: 13px;
+}
+
+#messageCount {
+    color: #a58a4c;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* ===== TARJETAS ===== */
+
+#messages.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 25px;
+    align-items: stretch;
+    min-width: 0;
+    isolation: isolate;
+}
+
+
+#messages .card {
+   
+background: linear-gradient(
+    145deg,
+    #F9EEF0 0%,
+    #E8C8CF 55%,
+    #E8D8B8 100%
+);
+border: 1px solid #E8C8CF;
+
+    border: 1px solid rgba(214, 184, 117, 0.45);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 0 6px 20px rgba(24, 56, 44, 0.10);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+
+
+
+
+/* Fotografías rectangulares */
+
+#messages .person {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+    margin-bottom: 20px;
+}
+
+#messages .person img {
+    width: 125px;
+    height: 105px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 2px solid #e8d7a8;
+    flex-shrink: 0;
+}
+
+#messages .person img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 20px rgba(35,75,59,.18);
+}
+
+#messages .person span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--g);
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Mensaje */
+
+#messages .quote {
+    color: #41483f;
+    font-size: 15px;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+    margin: 12px 0 18px;
+}
+
+/* Reproductores */
+
+#messages .player {
+    margin-top: 16px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+#messages .player iframe {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    border: 0;
+    border-radius: 12px;
+}
+
+/* Efecto hover */
+
+@media (hover: hover) and (pointer: fine) {
+    #messages:hover .card:not(:hover) {
+        filter: blur(2px);
+        opacity: .75;
+        transform: scale(.985);
+    }
+
+    #messages .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(24, 56, 44, 0.13);
+      }
+}
+
+/* ===== PANEL ADMINISTRATIVO ===== */
+
+.admin {
+    width: 100%;
+    max-width: 850px;
+    margin: 70px auto 20px;
+    padding: 30px;
+    scroll-margin-top: 90px;
+    background: linear-gradient(145deg, #fff, #fdfcf8);
+    border: 1px solid rgba(214,184,117,.35);
+    border-radius: 22px;
+    box-shadow: 0 10px 32px rgba(35,75,59,.08);
+}
+
+.admin h3 {
+    margin: 0 0 10px;
+    color: var(--g);
+    text-align: center;
+    font-family: Georgia, serif;
+    font-size: 29px;
+    font-weight: 400;
+}
+
+.admin > p {
+    max-width: 580px;
+    margin: 0 auto 24px;
+    text-align: center;
+}
+
+#loginBox, #editor {
+    width: 100%;
+    max-width: 620px;
+    min-width: 0;
+    margin: 22px auto 0;
+    padding: 25px;
+    background: #fffefa;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 5px 18px rgba(35,75,59,.06);
+}
+
+#loginBox h2, #editor h2 {
+    margin-top: 0;
+    color: var(--g);
+}
+
+#loginBox label, #editor label {
+    display: block;
+    margin: 12px 0 7px;
+    color: var(--g);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#loginBox input,
+#editor input,
+#editor textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0 0 15px;
+    padding: 13px 14px;
+    background: var(--cream);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font: 14px Arial, sans-serif;
+    outline: none;
+    transition: border-color .25s, box-shadow .25s;
+}
+
+#loginBox input:focus,
+#editor input:focus,
+#editor textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(214,184,117,.16);
+}
+
+#editor textarea {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+#editor .row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+}
+
+#editor .row > div {
+    min-width: 0;
+}
+
+#editor input[type="file"] {
+    padding: 10px;
+    font-size: 12px;
+}
+
+/* Botones del panel */
+
+#loginBtn, #publishBtn, #logoutBtn {
+    margin: 8px 6px 4px 0;
+    padding: 13px 24px;
+    border: 0;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s;
+}
+
+#loginBtn, #publishBtn {
+    background: var(--g);
+    color: white;
+}
+
+#logoutBtn {
+    background: #eeeae0;
+    color: var(--g);
+}
+
+#loginBtn:hover, #publishBtn:hover {
+    background: var(--g2);
+    transform: translateY(-2px);
+}
+
+#logoutBtn:hover {
+    background: #e4ddce;
+}
+
+#loginStatus, #editorStatus {
+    display: block;
+    min-height: 18px;
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Vista previa de fotografía */
+
+.photo-preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 130px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #f8f7f0;
+    border: 1px dashed var(--gold);
+    border-radius: 14px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+#senderPhotoPreview {
+    display: none;
+    width: 125px;
+    height: 105px;
+    object-fit: cover;
+    border: 3px solid white;
+    outline: 1px solid var(--gold);
+    border-radius: 15px;
+}
+
+/* ===== PIE DE PÁGINA ===== */
+
+footer {
+    padding: 25px 16px;
+    text-align: center;
+    color: var(--muted);
+    background: #edf1e9;
+    border-top: 1px solid rgba(214,184,117,.25);
+    font-size: 13px;
+}
+
+/* ===== BOTÓN VOLVER ARRIBA ===== */
+
+#backToTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 999;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    background: var(--g);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: .3s;
+    box-shadow: 0 5px 18px rgba(0,0,0,.15);
+}
+
+#backToTop.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#backToTop:hover {
+    background: var(--g2);
+    transform: translateY(-4px);
+}
+
+/* ===== CONFETI ===== */
+
+#confetti-container {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -20px;
+    width: 9px;
+    height: 14px;
+    opacity: 0;
+    border-radius: 2px;
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 600px) {
+    .topbar {
+        padding: 14px 16px;
+    }
+
+    .brand {
+        font-size: 20px;
+    }
+
+    .topbar-links {
+        gap: 12px;
+    }
+
+    .topbar-links a {
+        font-size: 10px;
+    }
+
+    .hero {
+        min-height: 75vh;
+        padding: 50px 18px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .portrait {
+        width: 145px;
+        height: 145px;
+    }
+
+    main {
+        padding: 50px 16px;
+    }
+
+    #messages.grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    #messages .card {
+        padding: 20px;
+    }
+
+    #messages .person img {
+        flex-basis: 105px;
+        width: 105px;
+        height: 90px;
+    }
+
+    #messages .person span {
+        font-size: 16px;
+    }
+
+    #messages .quote {
+        font-size: 14px;
+    }
+
+    .admin {
+        margin: 40px auto;
+        padding: 15px;
+    }
+
+    #loginBox, #editor {
+        padding: 18px;
+    }
+
+    #editor .row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    #backToTop {
+        right: 16px;
+        bottom: 18px;
+        width: 43px;
+        height: 43px;
+    }
+
+    .hero-cta {
+        padding: 12px 20px;
+    }
+}
+
+/* Dispositivos táctiles */
+
+@media (hover: none) {
+    #messages .card,
+    #messages .card:hover {
+        filter: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Accesibilidad */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+</style>
+</head>
+<body>
+  <nav class="topbar">
+    <a href="#inicio" class="brand">Liz<span>♡</span></a>
+
+    <div class="topbar-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#messages">Felicitaciones</a>
+        <a href="#admin">Administración</a>
+    </div>
+</nav>
+  <header class="hero" id="inicio">
+    <div class="hero-inner">
+      <div class="eyebrow">Un día especial · Una persona inolvidable</div>
+      <img id="lizPhoto" class="portrait hidden" alt="Foto de Liz">
+      <div id="lizPlaceholder" class="portrait" style="display:grid;place-items:center;margin:auto;font-size:54px;color:#b49a65">✿</div>
+      <h1>Feliz cumpleaños,<br><span>Liz</span></h1>
+      
+       <p>Hoy celebramos tu vida, tu alegría y todas las cosas bonitas que haces florecer. Que este nuevo año esté lleno de amor, sueños cumplidos y momentos inolvidables.</p>
+      <p class="message-counter">
+
+      <div class="section-divider">
+      <span>✧</span>
+      </div>
+
+      <span id="messageCount">0</span>
+        felicitaciones compartidas
+      </p>
+    </div>
+  </header>
+<div class="musicline">Cada felicitación tiene una canción especial. Abre un mensaje y pulsa «Escuchar mi canción» para disfrutarla. ♡</div>
+<main>
+ <div class="head"><div class="eyebrow">Palabras que se quedan</div><h2>Mensajes para Liz</h2><div class="muted">Pequeños mensajes, grandes recuerdos.</div></div>
+ <div id="messages" class="grid"><p class="muted">Cargando felicitaciones...</p></div>
+ <section class="admin" id="admin">
+  <h3>Panel privado</h3>
+  <p class="muted">Este espacio es solo para quien administra la página. Los visitantes no necesitan iniciar sesión para ver los mensajes.</p>
+  <div id="loginBox">
+   <label>Correo del administrador</label><input id="email" type="email" autocomplete="username" placeholder="tu correo">
+   <label>Contraseña</label><input id="password" type="password" autocomplete="current-password" placeholder="Contraseña de Firebase">
+   <button class="btn" id="loginBtn">Entrar al panel</button>
+   <div class="status" id="loginStatus"></div>
+  </div>
+  <div id="editor" class="hidden">
+   <div class="row"><div><label>Nombre de quien felicita</label><input id="sender" maxlength="60" placeholder="Nombre"></div><div><label>Foto de quien felicita</label><input id="senderPhoto" type="file" accept="image/*"><div class="photo-preview-container">
+    <img id="senderPhotoPreview" alt="Vista previa de la fotografía">
+    <span id="photoPreviewText">La fotografía aparecerá aquí</span>
+    </div>
+    </div>
+    </div>
+   <label>Mensaje para Liz</label><textarea id="message" rows="4" maxlength="700" placeholder="Escribe la felicitación..."></textarea>
+   <label>Canción dedicada (Spotify o YouTube)</label><input id="song" type="url" placeholder="https://youtu.be/... o https://open.spotify.com/...">
+   <label>Foto principal de Liz (opcional, se puede cambiar)</label><input id="lizUpload" type="file" accept="image/*">
+   <button class="btn" id="publishBtn">Publicar felicitación</button>
+   <button class="btn light" id="logoutBtn">Cerrar sesión</button>
+   <div class="status" id="editorStatus"></div>
+  </div>
+ </section>
+</main>
+<footer>Hecho con ♥ para celebrar a Liz</footer>
+
+<div id="confetti-container"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp,
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+const senderPhotoPreview = document.getElementById("senderPhotoPreview");
+const photoPreviewText = document.getElementById("photoPreviewText");
+
+document.getElementById("senderPhoto").addEventListener("change", (event) => {
+    const file = event.target.files[0];
+
+    if (!file) {
+        senderPhotoPreview.removeAttribute("src");
+        senderPhotoPreview.style.display = "none";
+        photoPreviewText.style.display = "block";
+        return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+        alert("Selecciona un archivo de imagen válido.");
+        event.target.value = "";
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+        senderPhotoPreview.src = reader.result;
+        senderPhotoPreview.style.display = "block";
+        photoPreviewText.style.display = "none";
+    };
+
+    reader.readAsDataURL(file);
+});
+
+// Configuración de tu proyecto Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyB-_0Q0EpNMT1vBSGpYhKY2D84upI3Bsrk",
+  authDomain: "cumple-liz.firebaseapp.com",
+  projectId: "cumple-liz",
+  storageBucket: "cumple-liz.firebasestorage.app",
+  messagingSenderId: "701150777911",
+  appId: "1:701150777911:web:4547b67e27da3497cc65b2",
+  measurementId: "G-V8M4GYN5RL"
+};
+
+const $ = id => document.getElementById(id);
+
+let db;
+let auth;
+let currentUser = null;
+
+const app = initializeApp(firebaseConfig);
+db = getFirestore(app);
+auth = getAuth(app);
+
+// Escuchar los mensajes publicados
+onSnapshot(
+  query(collection(db, "messages"), orderBy("createdAt", "desc")),
+  snapshot => {
+
+    const items = snapshot.docs.map(d => ({
+      id: d.id,
+      ...d.data()
+    }));
+
+    render(items);
+
+    // Actualizar contador después de cargar los mensajes
+    const counter = document.getElementById("messageCount");
+
+    if (counter) {
+      counter.textContent = snapshot.size;
+    }
+
+  },
+  error => {
+    $("messages").textContent =
+      "No se pudieron cargar los mensajes. Revisa Firestore.";
+
+    console.error("Error cargando mensajes:", error);
+  }
+);
+
+// Cargar la fotografía principal de Liz
+onSnapshot(
+  doc(db, "settings", "birthday"),
+  snapshot => {
+    const data = snapshot.data();
+
+    if (data?.lizPhotoURL) {
+      $("lizPhoto").src = data.lizPhotoURL;
+      $("lizPhoto").classList.remove("hidden");
+      $("lizPlaceholder").classList.add("hidden");
+    }
+  },
+  console.error
+);
+
+// Controlar el inicio de sesión
+onAuthStateChanged(auth, user => {
+  currentUser = user;
+
+  $("loginBox").classList.toggle("hidden", !!user);
+  $("editor").classList.toggle("hidden", !user);
+});
+
+// Comprimir imágenes y convertirlas a Base64
+async function compressImage(file) {
+  if (!file) return "";
+
+  if (!file.type.startsWith("image/")) {
+    throw new Error("Selecciona una imagen válida.");
+  }
+
+  const bitmap = await createImageBitmap(file);
+
+  const maxSize = 900;
+
+  const scale = Math.min(
+    1,
+    maxSize / Math.max(bitmap.width, bitmap.height)
+  );
+
+  const canvas = document.createElement("canvas");
+
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
+
+  const context = canvas.getContext("2d");
+
+  context.drawImage(
+    bitmap,
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  bitmap.close();
+
+  const blob = await new Promise(resolve => {
+    canvas.toBlob(resolve, "image/jpeg", 0.70);
+  });
+
+  if (!blob) {
+    throw new Error("No se pudo comprimir la imagen.");
+  }
+
+  const reader = new FileReader();
+
+  const dataUrl = await new Promise((resolve, reject) => {
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+
+  // Mantener espacio para los demás datos del documento
+  if (dataUrl.length > 550000) {
+    throw new Error(
+      "La imagen es demasiado grande. Selecciona otra fotografía."
+    );
+  }
+
+  return dataUrl;
+}
+
+// Convertir enlaces de YouTube a reproductor
+
+function youtubeEmbed(url) {
+  try {
+    const u = new URL(url);
+    let id = "";
+
+    if (u.hostname === "youtu.be") {
+      id = u.pathname.split("/").filter(Boolean)[0] || "";
+    } else if (
+      [
+        "youtube.com",
+        "www.youtube.com",
+        "m.youtube.com"
+      ].includes(u.hostname)
+    ) {
+      id =
+        u.searchParams.get("v") ||
+        u.pathname.split("/").filter(Boolean).pop() ||
+        "";
+    }
+
+    // Comprobar que el ID tenga un formato válido
+    if (!/^[a-zA-Z0-9_-]{11}$/.test(id)) {
+      return "";
+    }
+
+    // Reproductor estándar, sin autoplay
+    return `https://www.youtube.com/embed/${id}?rel=0`;
+  } catch {
+    return "";
+  }
+}
+
+
+// Convertir enlaces de Spotify a reproductor
+
+function spotifyEmbed(url) {
+  try {
+    const u = new URL(url);
+
+    if (u.hostname !== "open.spotify.com") {
+      return "";
+    }
+
+    const parts = u.pathname
+      .split("/")
+      .filter(Boolean);
+
+    // Eliminar prefijos regionales como intl-es o intl-en
+    if (parts[0]?.startsWith("intl-")) {
+      parts.shift();
+    }
+
+    const types = [
+      "track",
+      "album",
+      "playlist",
+      "episode",
+      "show"
+    ];
+
+    if (!types.includes(parts[0]) || !parts[1]) {
+      return "";
+    }
+
+    return `https://open.spotify.com/embed/${parts[0]}/${parts[1]}`;
+  } catch {
+    return "";
+  }
+}
+
+
+// Mostrar las felicitaciones
+function render(items) {
+  const root = $("messages");
+  root.innerHTML = "";
+
+  if (!items.length) {
+    root.innerHTML =
+      '<p class="muted">Pronto aparecerán aquí las felicitaciones para Liz.</p>';
+    return;
+  }
+
+  for (const item of items) {
+    const card = document.createElement("article");
+    card.className = "card";
+
+    const person = document.createElement("div");
+    person.className = "person";
+
+    const img = document.createElement("img");
+
+    img.src = item.photoURL ||
+      "data:image/svg+xml," +
+      encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="100%" height="100%" fill="#e9eee5"/><text x="50%" y="58%" text-anchor="middle" font-size="35" fill="#416c55">✿</text></svg>'
+      );
+
+    img.alt = "";
+
+    const name = document.createElement("span");
+    name.textContent = item.sender || "Alguien especial";
+
+    person.append(img, name);
+
+    const quote = document.createElement("p");
+    quote.className = "quote";
+    quote.textContent = item.message || "";
+
+    card.append(person, quote);
+
+    if (item.songUrl) {
+      const play = document.createElement("button");
+      play.className = "play";
+      play.textContent = "▶  Escuchar mi canción";
+
+      const player = document.createElement("div");
+      player.className = "player hidden";
+
+      play.addEventListener("click", () => {
+        const yt = youtubeEmbed(item.songUrl);
+        const sp = spotifyEmbed(item.songUrl);
+        const src = yt || sp;
+
+        if (!src) {
+          player.textContent = "Enlace musical no compatible.";
+          return;
+        }
+
+        player.innerHTML = "";
+
+        const frame = document.createElement("iframe");
+        frame.src = src;
+        frame.height = yt ? "190" : "152";
+        frame.allow =
+          "autoplay; encrypted-media; clipboard-write; fullscreen; picture-in-picture";
+        frame.allowFullscreen = true;
+        frame.title = "Canción dedicada a Liz";
+
+        player.append(frame);
+        player.classList.remove("hidden");
+
+        play.textContent = "♫  Canción abierta";
+      });
+
+      card.append(play, player);
+    }
+
+    root.append(card);
+  }
+}
+
+// Iniciar sesión
+$("loginBtn").addEventListener("click", async () => {
+  try {
+    await signInWithEmailAndPassword(
+      auth,
+      $("email").value,
+      $("password").value
+    );
+
+    $("loginStatus").textContent = "";
+  } catch (error) {
+    $("loginStatus").textContent =
+      "No se pudo iniciar sesión: " + error.message;
+  }
+});
+
+// Cerrar sesión
+$("logoutBtn").addEventListener("click", () => {
+  signOut(auth);
+});
+
+// Publicar felicitación
+$("publishBtn").addEventListener("click", async () => {
+  const status = $("editorStatus");
+  status.textContent = "Preparando publicación...";
+
+  try {
+    if (!currentUser) {
+      throw new Error("Inicia sesión primero.");
+    }
+
+    const sender = $("sender").value.trim();
+    const message = $("message").value.trim();
+    const songUrl = $("song").value.trim();
+
+    if (!sender || !message) {
+      throw new Error("Escribe el nombre y el mensaje.");
+    }
+
+    if (
+      songUrl &&
+      !youtubeEmbed(songUrl) &&
+      !spotifyEmbed(songUrl)
+    ) {
+      throw new Error("Usa un enlace válido de Spotify o YouTube.");
+    }
+
+    // Comprimir fotografías antes de guardarlas
+    const photoURL = await compressImage(
+      $("senderPhoto").files[0]
+    );
+
+    const lizFile = $("lizUpload").files[0];
+
+    const lizPhotoURL = lizFile
+      ? await compressImage(lizFile)
+      : "";
+
+    // Guardar felicitación en Firestore
+    await addDoc(collection(db, "messages"), {
+      sender,
+      message,
+      songUrl,
+      photoURL,
+      createdAt: serverTimestamp()
+    });
+
+    // Actualizar fotografía principal de Liz, si se seleccionó
+    if (lizPhotoURL) {
+      await setDoc(
+        doc(db, "settings", "birthday"),
+        { lizPhotoURL },
+        { merge: true }
+      );
+    }
+
+    $("sender").value = "";
+    $("message").value = "";
+    $("song").value = "";
+    $("senderPhoto").value = "";
+    $("lizUpload").value = "";
+
+    status.textContent = "¡Felicitación publicada!";
+
+  } catch (error) {
+    status.textContent = error.message;
+    console.error(error);
+  }
+});
+
+// ===== BOTÓN VOLVER ARRIBA =====
+
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+    backToTop.classList.toggle("visible", window.scrollY > 350);
+});
+
+backToTop.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+// ===== CONFETI DE BIENVENIDA =====
+
+(() => {
+    const container = document.getElementById("confetti-container");
+
+    // No ejecutar si no existe el contenedor
+    if (!container) return;
+
+    // Respetar la preferencia de movimiento reducido
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+    }
+
+    const colors = [
+        "#D6B875",
+        "#234B3B",
+        "#E8D6A5",
+        "#A58B50",
+        "#FAF8F1"
+    ];
+
+    // Crear 65 partículas
+    for (let i = 0; i < 65; i++) {
+        const piece = document.createElement("span");
+
+        piece.className = "confetti-piece";
+
+        piece.style.left = Math.random() * 100 + "%";
+        piece.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.animationDuration =
+            (3 + Math.random() * 3) + "s";
+
+        piece.style.animationDelay =
+            (Math.random() * 1.5) + "s";
+
+        piece.style.width = (5 + Math.random() * 6) + "px";
+        piece.style.height = (8 + Math.random() * 9) + "px";
+
+        container.appendChild(piece);
+
+        // Eliminar cada partícula después de su animación
+        piece.addEventListener("animationend", () => {
+            piece.remove();
+        });
+    }
+})();
+
+</script>
+
+<button id="backToTop" aria-label="Volver al inicio" title="Volver arriba">
+    ↑
+</button>
+</body></html>
